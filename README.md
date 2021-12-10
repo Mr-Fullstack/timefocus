@@ -9,7 +9,7 @@
 ![exemplo](https://play-lh.googleusercontent.com/86poyNSg_9_O-0XVbonjmBewcyw7xCKUlVLc6r-P0vkX6D6G5OIyKvubAg1cnvcNckI=w1920-h947-rw)
 ![exemplo](https://play-lh.googleusercontent.com/zdWZYiTg8I1I1Z5Btbc1i-fnffpNkKRxxA-rqHlofNXLmGW-fiawkqNeVLnxrsqE5A8=w1920-h947-rw)
 
-link para aplicativos Google Play Store
+link para aplicativo na Google Play Store
 https://play.google.com/store/apps/details?id=com.labscode.timefocus
 
 link para PWA 
