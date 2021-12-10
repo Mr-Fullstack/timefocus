@@ -34,9 +34,10 @@ export const Title = styled.Text<ButtonType>`
   font-size: ${RFValue(20)}px;
   font-family:${({ theme }) => theme.fontFamily.bold} ;
   letter-spacing: 1.2px;
-
+  text-shadow: 0px 1px 1px #000;
   color: ${({ theme }) => theme.colors.text_1};
   ${({ trigger }) => trigger === 'repeat' && css`
     color: ${({ theme }) => theme.colors.text_2};
+    text-shadow: 0px 1px 1px #fff;
   `}
 `;

@@ -11,11 +11,11 @@ import {
   Title
 } from './styles'
 
-export default function ({ title, trigger, ...props }: ButtonProps) {
+export default function ({ style, title, trigger, ...props }: ButtonProps) {
 
   return (
 
-    <Container trigger={trigger} {...props}>
+    <Container trigger={trigger} style={[{ elevation: 1 }, style]} {...props}>
       <Title trigger={trigger}>{title}</Title>
     </Container>
   )

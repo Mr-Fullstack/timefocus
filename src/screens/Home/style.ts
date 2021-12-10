@@ -40,14 +40,21 @@ export const HeaderText = styled.Text`
 `;
 export const SoundEffect = styled.TouchableOpacity`
   position:absolute;
-  right: 16px;
-  top: 35px ;
+  right: 0px;
+  top: 25px ;
+  width: 80px;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const SoundEffectIcon = styled(FontAwesome5)`
+export const SoundEffectIcon = styled(FontAwesome5) <CountType>`
   font-size: ${RFValue(30)}px;
   color: ${({ theme }) => theme.colors.text_1};
   opacity: .3;
+  ${({ paused }) => paused && css`
+    color: ${({ theme }) => theme.colors.text_2};
+  `}
 `;
 export const WrapperMain = styled.View`
   margin-top: 41px;
@@ -88,6 +95,7 @@ export const CountCurrent = styled.Text<CountType>`
   font-family: ${({ theme }) => theme.fontFamily.regular};
   font-size: ${({ theme }) => theme.fontSize._44}px;
   color: ${({ theme }) => theme.colors.text_1};
+  text-shadow: 0px 0px 2px #000;
   ${({ paused }) => paused && css`
     color: ${({ theme }) => theme.colors.text_2};
   `}
@@ -99,6 +107,7 @@ export const DescriptionCurrent = styled.Text<CountType>`
   font-family: ${({ theme }) => theme.fontFamily.regular};
   font-size: ${({ theme }) => theme.fontSize._18}px;
   color: ${({ theme }) => theme.colors.text_1};
+  text-shadow: 0px 0px 2px #000;
   margin-top: 32px;
   padding: 16px;
   width: 100%;

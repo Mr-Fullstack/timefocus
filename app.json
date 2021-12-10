@@ -3,7 +3,7 @@
     "owner":"mrfullstack",
     "name": "timefocus",
     "slug": "timefocus",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "assetBundlePatterns": [
@@ -11,12 +11,12 @@
     ],
     "ios": {
       "bundleIdentifier": "com.labscode.timefocus",
-      "buildNumber": "1.0.0",
+      "buildNumber": "3.0.0",
       "supportsTablet": false
     },
     "android": {
       "package": "com.labscode.timefocus",
-      "versionCode": 1,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#412D8E"
@@ -24,8 +24,11 @@
     },
     "splash":{
       "image":"./assets/splash.png",
-      "backgroundColor": "#412D8E"
+      "backgroundColor": "#ED702A"
     }
   },
-  "name": "timefocus"
+  "name": "timefocus",
+  "android": {
+    "enableDangerousExperimentalLeanBuilds": true
+  }
 }

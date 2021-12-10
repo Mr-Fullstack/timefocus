@@ -18,7 +18,7 @@ export const Container = styled.TouchableOpacity<ButtonType>`
   justify-content: center;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.tertiary};
-
+  box-shadow: 2px 2px 25px #000;
   ${({ trigger }) => trigger === 'cancel' && css`
     background-color: ${({ theme }) => theme.colors.attetion};
   `}
@@ -27,4 +27,5 @@ export const Container = styled.TouchableOpacity<ButtonType>`
 export const Icon = styled(FontAwesome5)`
   font-size: ${RFValue(25)}px;
   color: ${({ theme }) => theme.colors.text_1};
+  text-shadow: 0px 0px 2px #000;
 `;

@@ -30,7 +30,7 @@ import ButtonActionCount from "../../components/ButtonActionCount";
 // publish in playstore [] 
 
 export default function Home() {
-  let [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [isEditing, setEditing] = useState(false);
   const [currentMinutes, setCurrentMinutes] = useState('1');
@@ -38,34 +38,59 @@ export default function Home() {
   const [isRunning, setRunning] = useState(false);
   const [swiperClick, setSwiperClick] = useState(false);
   const [minutesInitialSave, setMinutesInitial] = useState('1');
-  const [descripiton, setDescription] = useState("Description your activities");
+  const [descripiton, setDescription] = useState("a description of the activity here");
   const [toggleSound, setToggleSound] = useState(true);
   const [sound, setSound] = useState<Audio.Sound>();
-  const soundStart = require("../../assets/sounds/ticking.mp3");
-  const soundFinish = require("../../assets/sounds/bell.mp3");
-  const [pathSound, setPathSound] = useState(soundStart)
+  const soundStart = require('../../assets/sounds/ticking.mp3')
+  const soundFinished = require('../../assets/sounds/bell.mp3')
 
-  async function playSound() {
 
+  async function playSoundStart(play: boolean = true) {
     const { sound } = await Audio.Sound.createAsync(
-      pathSound
+      soundStart
     );
 
-    setSound(sound);
-    await sound.playAsync();
-    sound.setIsLoopingAsync(true)
-    // if (isFinished) {
-    //   sound.setIsLoopingAsync(false)
-    // }
+    if (play) {
+      setSound(sound);
+      await sound.playAsync();
+      sound.setIsLoopingAsync(true)
+    } else {
+      await sound.stopAsync();
+      sound.setIsLoopingAsync(false)
+    }
+
   }
 
-  useEffect(() => {
+  async function playSoundFinished(play: boolean = true) {
+    const { sound } = await Audio.Sound.createAsync(
+      soundFinished
+    );
+    if (play) {
+      playSoundStart(false)
+      setSound(sound);
+      await sound.playAsync();
+      sound.setIsLoopingAsync(false)
+    } else {
+      await sound.stopAsync();
+      sound.setIsLoopingAsync(false)
+    }
+
+  }
+
+  React.useEffect(() => {
+
+    if (isFinished) {
+      playSoundFinished()
+      sound?.unloadAsync();
+    }
+
     return sound
       ? () => {
         sound.unloadAsync();
       }
       : undefined;
-  }, [sound, isFinished, pathSound]);
+  }, [isFinished]);
+
 
   useEffect(() => {
     const running = setInterval(() => {
@@ -86,8 +111,6 @@ export default function Home() {
       }
       if (countSeconds === 0 && parseInt(currentMinutes) === 0) {
         setIsFinished(true)
-        // sound?.pauseAsync();
-        // setPathSound(soundFinish)
       }
     }, 1000);
     return () => clearInterval(running);
@@ -103,7 +126,7 @@ export default function Home() {
       setHasStarted(true);
     }
     if (!isRunning) {
-      playSound();
+      playSoundStart();
       setRunning(true);
     }
   }
@@ -235,7 +258,7 @@ export default function Home() {
         {((parseInt(currentMinutes) === 0 && countSeconds === 0) && !isEditing) && <HeaderText>Finished!</HeaderText>}
         {((parseInt(currentMinutes) >= 0 && countSeconds > 0) && !isEditing) &&
           <SoundEffect onPress={handlerToggleSound}>
-            <SoundEffectIcon name={toggleSound ? "volume-up" : "volume-mute"} />
+            <SoundEffectIcon name={toggleSound ? "volume-up" : "volume-mute"} paused={(hasStarted && !isRunning && !isEditing) ? true : false} />
           </SoundEffect>}
       </Header>
       <WrapperMain >
